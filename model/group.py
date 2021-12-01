@@ -43,6 +43,7 @@ class Group:
         if new_user and isinstance(new_user, User):
             if self.__max_size > self.__current_size:
                 self.__users.append(new_user)
+                self.__current_size += 1
 
     # endregion
 
