@@ -14,5 +14,5 @@ jobs:
         jenkins-username: "admin"
         jenkins-pat: ${{ secrets.JENKINS_TOKEN }}
         poll-time: 10
-        timeout-valie: 600
+        timeout-value: 600
         verbose: false
