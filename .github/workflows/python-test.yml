@@ -7,10 +7,12 @@ jobs:
       max-parallel: 5
     steps:
     - name: Run Jenkins job
-      uses: appleboy/jenkins-action@master
+      uses: mickeygoussetorg/trigger-jenkins-job@v1
       with:
-        url: "http://38600.ddns.net:8080"
-        user: "admin"
-        token: ${{ secrets.JENKINS_TOKEN }}
-        job: "python-project"
-        
+        jenkins-server: "http://38600.ddns.net:8080"
+        jenkins-job: "python-project"
+        jenkins-username: "admin"
+        jenkins-pat: ${{ secrets.JENKINS_TOKEN }}
+        poll-time: 10
+        timeout-valie: 600
+        verbose: true
