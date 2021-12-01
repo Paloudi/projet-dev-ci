@@ -15,4 +15,4 @@ jobs:
         jenkins-pat: ${{ secrets.JENKINS_TOKEN }}
         poll-time: 10
         timeout-valie: 600
-        verbose: true
+        verbose: false
