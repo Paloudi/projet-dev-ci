@@ -40,3 +40,12 @@ class User:
         :rtype: int
         """
         return self.__current_id
+
+    @staticmethod
+    def get_static_id() -> int:
+        """
+        Return the static id of the class
+        :return: The id of the next user
+        :rtype: int
+        """
+        return User.__id

@@ -55,6 +55,23 @@ class GroupTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             Group(-10)
 
+    def test_group_get_max_size(self) -> None:
+        """
+        Test if the max size getter works properly
+        """
+        group_size = 5
+        sut = Group(group_size)
+        self.assertEqual(group_size, sut.get_max_size())
+
+    def test_group_get_current_size(self) -> None:
+        """
+        Test if the get current size getter works properly
+        """
+        sut = Group(10)
+        sut.add_user(User("test"))
+        sut.add_user(User("test"))
+        self.assertEqual(2, sut.get_current_size())
+
 
 if __name__ == '__main__':
     unittest.main()
