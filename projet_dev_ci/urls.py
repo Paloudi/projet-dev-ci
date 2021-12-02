@@ -15,9 +15,12 @@ Including another URLconf
 """
 from .controller import administrator
 from .controller import user
+from .controller import home
 from django.urls import path
 
 urlpatterns = [
-    path('admin/', administrator.home),
-    path('user/', user.home),
+    path('', home.home),
+    path('home', home.home),
+    path('admin', administrator.home),
+    path('user', user.home),
 ]
