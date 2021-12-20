@@ -8,7 +8,7 @@ from datetime import datetime
 from projet_dev_ci.view import user as v
 
 
-def home():
+def home(request):
     """
     Handles request of the user route.
     """
