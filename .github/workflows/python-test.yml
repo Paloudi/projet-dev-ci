@@ -1,4 +1,4 @@
-name: Trigger Jenkins job
+name: Deployment and Jenkins run
 on:
   push:
     branches:
@@ -8,7 +8,28 @@ on:
     branches:
       - master
       - dev
+stages:
+  - deploy-test
+  - test
+  - deploy
+
 jobs:
+  deploy_test:
+    stage: deploy-test
+    script:
+      - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+      - eval $(ssh-agent -s)
+      - ssh-add <(echo "$SSH_PRIVATE_KEY")
+      - mkdir -p ~/.ssh
+      - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\tPort 2222\n\n" > ~/.ssh/config'
+      - ~/.composer/vendor/bin/envoy run deploy --commit="$CI_COMMIT_SHA"
+    environment:
+     name: dev
+     url: http://38600.ddns.net
+     when: on_success
+
+
+
   build-linux:
     runs-on: ubuntu-latest
     strategy:
@@ -23,4 +44,4 @@ jobs:
         jenkins-pat: ${{ secrets.JENKINS_TOKEN }}
         poll-time: 10
         timeout-value: 600
-        verbose: false
+        verbose: true
