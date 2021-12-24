@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-z4*xl(0s!82n(i$tmj%eqbnh^&v&0!7c!og1q=^!x3#kzwoy+a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Allowed host
+# 1.41 is jenkins server
+# 38600 is public access
+ALLOWED_HOSTS = ["192.168.1.41", "38600.ddns.net"]
 
 
 # Application definition
