@@ -17,14 +17,12 @@ jobs:
       SERVER_ADDR: ${{ secrets.SERVER_ADDR }}
       SSH_USER: ${{ secrets.SSH_USER}}
     steps:
-    - run: 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
-    - run: eval `ssh-agent -s`
-    - run: ssh-agent bash
-    - run: echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - run: mkdir -p ~/.ssh
-    - run: chmod 700 ~/.ssh
-    - run: ssh-keyscan $SERVER_ADDR >> ~/.ssh/known_hosts
-    - run: chmod 644 ~/.ssh/known_hosts
-    - run: ssh $SSH_USER@$SERVER_ADDR "hostname && echo 'Welcome!!!' > welcome.txt"
-
-
+    - run: |
+        'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
+        eval `ssh-agent -s`
+        echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+        mkdir -p ~/.ssh
+        chmod 700 ~/.ssh
+        ssh-keyscan $SERVER_ADDR >> ~/.ssh/known_hosts
+        chmod 644 ~/.ssh/known_hosts
+        ssh $SSH_USER@$SERVER_ADDR "hostname && echo 'Welcome!!!' > welcome.txt"
