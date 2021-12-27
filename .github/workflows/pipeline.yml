@@ -19,6 +19,6 @@ jobs:
     steps:
       - run: command -v ssh-agent >/dev/null || ( apt install ssh )
       - run: eval `ssh-agent -s` && echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - 
-      - run: && mkdir -p ~/.ssh && chmod 700 ~/.ssh 
+      - run: mkdir -p ~/.ssh && chmod 700 ~/.ssh 
       - run: echo -e "Host *\n\tStrictHostKeyChecking no\n\tPort 2223\n\n" > ~/.ssh/config
       - run: ssh $SSH_USER@$SERVER_ADDR "hostname && echo 'Welcome!!!' > welcome.txt"
