@@ -18,5 +18,5 @@ jobs:
       SSH_USER: ${{ secrets.SSH_USER}}
     steps:
       - run: command -v ssh-agent >/dev/null || ( apt install openssh-client )
-      - run: eval `ssh-agent -s` && echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - && mkdir -p ~/.ssh && chmod 700 ~/.ssh && ssh-keyscan $SERVER_ADDR >> ~/.ssh/known_hosts    - run: chmod 644 ~/.ssh/known_hosts
+      - run: eval `ssh-agent -s` && echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - && mkdir -p ~/.ssh && chmod 700 ~/.ssh && ssh-keyscan $SERVER_ADDR >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts
       - run: ssh $SSH_USER@$SERVER_ADDR "hostname && echo 'Welcome!!!' > welcome.txt"
