@@ -19,7 +19,7 @@ jobs:
     steps:
     - run: 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
     - run: eval "$(ssh-agent -s)"
-    - run: $ssh-agent
+    - run: ssh-agent
     - run: echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - run: mkdir -p ~/.ssh
     - run: chmod 700 ~/.ssh
