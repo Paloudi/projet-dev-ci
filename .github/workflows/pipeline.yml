@@ -18,7 +18,7 @@ jobs:
       SSH_USER: ${{ secrets.SSH_USER}}
     steps:
     - run: 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
-    - run: eval $(ssh-agent -s)
+    - run: eval `ssh-agent -s`
     - run: echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - run: mkdir -p ~/.ssh
     - run: chmod 700 ~/.ssh
