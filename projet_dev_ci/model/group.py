@@ -5,7 +5,7 @@ Module storing the group model
 """
 
 from typing import List
-from model.user import User
+from projet_dev_ci.model.user import User
 
 
 class Group:

@@ -7,8 +7,8 @@ Module storing the user model
 
 class User:
     """
-    An user represent... an user.
-    An user has a name
+    A user represent... a user.
+    A user has a name
     """
 
     __id = 0
