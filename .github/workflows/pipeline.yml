@@ -7,7 +7,6 @@ on:
   pull_request:
     branches:
       - master
-      - dev
 jobs:
   deploy_test:
     runs-on: ubuntu-latest
@@ -26,13 +25,13 @@ jobs:
   run_jenkins:
     runs-on: ubuntu-latest
     steps:
-    - id: triggerjenkinsjob
+      - id: triggerjenkinsjob
         uses: mickeygoussetorg/trigger-jenkins-job@v1
-      with:
-        jenkins-server: "https://38600.ddns.net:9002"
-        jenkins-job: "projet cicl"
-        jenkins-username: "paloudi"
-        jenkins-pat: ${{ secrets.JENKINS_TOKEN }}
-        poll-time: 10
-        timeout-value: 600
-        verbose: true
+        with:
+          jenkins-server: "https://38600.ddns.net:9002"
+          jenkins-job: "projet cicl"
+          jenkins-username: "paloudi"
+          jenkins-pat: ${{ secrets.JENKINS_TOKEN }}
+          poll-time: 10
+          timeout-value: 600
+          verbose: true
