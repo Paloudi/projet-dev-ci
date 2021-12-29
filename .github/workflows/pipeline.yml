@@ -24,13 +24,15 @@ jobs:
           echo -e "Host *\n\tStrictHostKeyChecking no\n\tPort 2223\n\n" > ~/.ssh/config
           ssh $SSH_USER@$SERVER_ADDR "./deploy_django.sh"
   run_jenkins:
-    name: Run Jenkins
-    uses: mickeygoussetorg/trigger-jenkins-job@v1
-    with:
-      jenkins-server: "https://38600.ddns.net:9002"
-      jenkins-job: "projet cicl"
-      jenkins-username: "paloudi"
-      jenkins-pat: ${{ secrets.JENKINS_TOKEN }}
-      poll-time: 10
-      timeout-value: 600
-      verbose: true
+    runs-on: ubuntu-latest
+    steps:
+    - id: triggerjenkinsjob
+        uses: mickeygoussetorg/trigger-jenkins-job@v1
+      with:
+        jenkins-server: "https://38600.ddns.net:9002"
+        jenkins-job: "projet cicl"
+        jenkins-username: "paloudi"
+        jenkins-pat: ${{ secrets.JENKINS_TOKEN }}
+        poll-time: 10
+        timeout-value: 600
+        verbose: true
