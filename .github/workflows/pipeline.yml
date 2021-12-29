@@ -42,8 +42,8 @@ jobs:
           jenkins-url: "https://38600.ddns.net:9002"
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           user: "paloudi"
-          job-path: "/job/projet-cicl"
-          job-params: "{'BRANCH': '${{ env.BRANCH_NAME }}'}"
+          job-path: "job/projet-cicl"
+          job-params: "{\"BRANCH\": \"${{ env.BRANCH_NAME }}\"}"
         
       - name: Get job status
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
