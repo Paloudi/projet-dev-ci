@@ -26,10 +26,24 @@ jobs:
     name: Jenkins pipeline
     runs-on: ubuntu-latest
     steps:
-      - name: Jenkins job
-        uses: appleboy/jenkins-action@master
+      - name: Get branch name (merge)
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+        
+      - name: Get branch name (pull request)
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+        
+      - name: Trigger Jenkins job
+        uses: GoldenspearLLC/build-jenkins-job@master
         with:
-          url: "https://38600.ddns.net:9002"
+          jenkins-url: "https://38600.ddns.net:9002"
+          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           user: "paloudi"
-          token: ${{ secrets.JENKINS_TOKEN }}
-          job: "projet-cicl"
+          job-path: "/job/projet-cicl"
+          job-param: "{'BRANCH': '${{ env.BRANCH_NAME }}'}"
+        
+      - name: Get job status
+        run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
