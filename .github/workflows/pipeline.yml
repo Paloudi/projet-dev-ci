@@ -37,7 +37,7 @@ jobs:
         run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
         
       - name: Trigger Jenkins job
-        uses: GoldenspearLLC/build-jenkins-job@master
+        uses: Paloudi/build-jenkins-job@master
         with:
           jenkins-url: "https://38600.ddns.net:9002"
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
