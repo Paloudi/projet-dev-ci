@@ -43,7 +43,7 @@ jobs:
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           user: "paloudi"
           job-path: "/job/projet-cicl"
-          job-param: "{'BRANCH': '${{ env.BRANCH_NAME }}'}"
+          job-params: "{'BRANCH': '${{ env.BRANCH_NAME }}'}"
         
       - name: Get job status
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
