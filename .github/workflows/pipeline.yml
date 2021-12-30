@@ -39,11 +39,13 @@ jobs:
       - name: Trigger Jenkins job
         uses: Paloudi/build-jenkins-job@master
         with:
-          jenkins-url: "https://38600.ddns.net:9002"
+          jenkins-url: "38600.ddns.net"
+          jenkins-port: 9092
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           user: "paloudi"
           job-path: "job/projet-cicl"
           job-params: "{\"BRANCH\": \"${{ env.BRANCH_NAME }}\"}"
+          is-secure: true
         
       - name: Get job status
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
