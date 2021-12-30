@@ -40,7 +40,7 @@ jobs:
         uses: Paloudi/build-jenkins-job@master
         with:
           jenkins-url: "38600.ddns.net"
-          jenkins-port: 9092
+          jenkins-port: 9002
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           user: "paloudi"
           job-path: "job/projet-cicl"
