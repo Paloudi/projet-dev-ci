@@ -7,7 +7,6 @@ on:
   pull_request:
     branches:
       - master
-      - dev
 jobs:
   deploy_test:
     runs-on: ubuntu-latest
@@ -23,3 +22,30 @@ jobs:
           mkdir -p ~/.ssh && chmod 700 ~/.ssh 
           echo -e "Host *\n\tStrictHostKeyChecking no\n\tPort 2223\n\n" > ~/.ssh/config
           ssh $SSH_USER@$SERVER_ADDR "./deploy_django.sh"
+  run_jenkins:
+    name: Jenkins pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get branch name (merge)
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+        
+      - name: Get branch name (pull request)
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+        
+      - name: Trigger Jenkins job
+        uses: Paloudi/build-jenkins-job@master
+        with:
+          jenkins-url: "38600.ddns.net"
+          jenkins-port: 9002
+          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
+          user: "paloudi"
+          job-path: "job/projet-cicl"
+          job-params: "{\"BRANCH\": \"${{ env.BRANCH_NAME }}\"}"
+          is-secure: true
+        
+      - name: Get job status
+        run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
