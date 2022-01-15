@@ -4,6 +4,7 @@
 Module storing the group model
 """
 
+import string
 from typing import List
 from projet_dev_ci.model.user import User
 
@@ -27,6 +28,7 @@ class Group:
             self.__max_size = size
             self.__current_size = 0
             self.__users: List[User] = []
+            self.__last_param = ""
         else:
             raise ValueError("size parameter is invalid")
 
@@ -45,15 +47,15 @@ class Group:
                 self.__users.append(new_user)
                 self.__current_size += 1
 
-    def remove_user(self, user_to_remove: User ) -> None: 
+    def remove_user(self, user_to_remove: User) -> None:
         """
         Remove a user to this group
         :param user_to_remove : an user to remove from this group
-        :type new_user: User
+        :type user_to_remove: User
         """
         if user_to_remove and isinstance(user_to_remove, User):
             self.__users.remove(user_to_remove)
-            self.__current_size -=1
+            self.__current_size -= 1
 
     # endregion
 
@@ -82,5 +84,22 @@ class Group:
         :rtype: int
         """
         return self.__max_size
+    
+    def get_last_param(self) -> string:
+        """
+        Returns the last param of the group
+        :return: last param of the group
+        :rtype: string
+        """
+        return self.__last_param
 
     # endregion
+
+    # region setters
+    def set_last_param(self, last_param : string):
+        """
+        set the last param of the group
+        """
+        self.__last_param = last_param
+
+    # endregion 

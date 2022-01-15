@@ -28,7 +28,7 @@ DEBUG = True
 # Allowed host
 # 1.41 is jenkins server
 # 38600 is public access
-ALLOWED_HOSTS = ["38600.ddns.net"]
+ALLOWED_HOSTS = ["38600.ddns.net", "127.0.0.1"]
 
 
 # Application definition
