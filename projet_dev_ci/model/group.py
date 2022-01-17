@@ -28,7 +28,6 @@ class Group:
             self.__max_size = size
             self.__current_size = 0
             self.__users: List[User] = []
-            self.__last_param = ""
         else:
             raise ValueError("size parameter is invalid")
 
@@ -84,22 +83,9 @@ class Group:
         :rtype: int
         """
         return self.__max_size
-    
-    def get_last_param(self) -> string:
-        """
-        Returns the last param of the group
-        :return: last param of the group
-        :rtype: string
-        """
-        return self.__last_param
 
     # endregion
 
     # region setters
-    def set_last_param(self, last_param : string):
-        """
-        set the last param of the group
-        """
-        self.__last_param = last_param
 
     # endregion 

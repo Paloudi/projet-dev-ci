@@ -1,12 +1,6 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import string
-from projet_dev_ci.model.group import Group
-from projet_dev_ci.model.user import User
-from typing import List
-
-
 """
 Controller of the administrator route.
 """
@@ -21,8 +15,4 @@ def home(request):
     """
     now = datetime.now()
     return v.home(now)
-
-def group_gestion(self, group : Group):
-    if group.get_last_param == "LAST_MIN":
-        
 
