@@ -88,4 +88,22 @@ class Group:
 
     # region setters
 
+    def set_max_size(self, new_max_size: int):
+        """
+        set the max size of the group
+        """
+        self.__max_size = new_max_size
+
+    def set_current_size(self, new_current_size: int):
+        """
+        set the current size of the group
+        """
+        self.__current_size = new_current_size
+
+    def set_users(self, new_users_list: int):
+        """
+        set the list of group's users 
+        """
+        self.__users = new_users_list
+
     # endregion 

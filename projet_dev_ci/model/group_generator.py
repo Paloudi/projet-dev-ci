@@ -122,7 +122,7 @@ class group_generator:
 
     # endregion
 
-    # region methods
+    # region Methods
 
     def last_group_gestion(self):
         """
