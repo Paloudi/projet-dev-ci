@@ -50,6 +50,22 @@ class group_generator:
             """
             return self.__last_param
 
+    def get_users_number(self) -> int:
+            """
+            Returns the number of users
+            :return: the number of users
+            :rtype: int
+            """
+            return self.__users_number
+
+    def get_groups_number(self) -> int:
+            """
+            Returns the number of groups
+            :return: the number of groups
+            :rtype: int
+            """
+            return self.__users_groups
+
     # endregion
 
     # region setters
@@ -60,12 +76,24 @@ class group_generator:
         """
         self.__last_param = last_param
 
+    def set_users_number(self, users_number: int):
+        """
+        set the number of users
+        """
+        self.__users_number = users_number
+
+    def set_groups_number(self, groups_number: int):
+        """
+        set the number of groups
+        """
+        self.__groups_number = groups_number
+
     # endregion
 
     # region methods
 
-    def last_group_gestion(self, users_number : int, groups_number : int):
-        if users_number % groups_number != 0:
+    def last_group_gestion(self):
+        if self.__users_number % self.__groups_number != 0:
             return
         if group.get_last_param == "LAST_MIN":
             print("blabla")
