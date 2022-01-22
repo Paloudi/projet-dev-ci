@@ -146,6 +146,15 @@ class GroupGenerator:
     # region Methods
 
     def number_of_groups_calculator(self, users_number: int, groups_size: int, last_param):
+        """
+        Calculation of group dimensions
+        :param users_number: Number of users
+        :param groups_size: Desired size of the groups
+        :param last_param: The way of handling last group size
+        :type users_number: int
+        :type groups_size: int
+        :type last_param: string
+        """
         groups_number = 0
         list_of_number_of_groups = []
         list_of_size_of_groups = []
@@ -156,35 +165,35 @@ class GroupGenerator:
             print("Taille des groupes : ", self.__groups_size, " Nombre de groupes : ", (self.__users_number / self.__groups_size), "Taille du dernier groupe : ", self.__last_group_size)
             return
         if last_param == "LAST_MAX":
-            for x in range(users_number):
-                for y in range(users_number):
-                    # print("X = ", x, "Y = " , y , "X*Y = ", x*y)
-                    if (x * y) == users_number:
-                        print("C'est gagné ! -> X : ", x, " Y : ", y)
-                        list_of_number_of_groups.append(x)
-                        list_of_size_of_groups.append(y)
-                    if (x * y) == (users_number - 1):
-                        print("C'est gagné ! -> X : ", x, " Y : ", y)
-                        list_of_number_of_groups.append(x)
-                        list_of_size_of_groups.append(y)
+            for number_of_groups_loop in range(users_number):
+                for groups_size_loop in range(users_number):
+                    # print("X = ", number_of_groups_loop, "Y = " , groups_size_loop , "X*Y = ", number_of_groups_loop*groups_size_loop)
+                    if (number_of_groups_loop * groups_size_loop) == users_number:
+                        print("C'est gagné ! -> X : ", number_of_groups_loop, " Y : ", groups_size_loop)
+                        list_of_number_of_groups.append(number_of_groups_loop)
+                        list_of_size_of_groups.append(groups_size_loop)
+                    if (number_of_groups_loop * groups_size_loop) == (users_number - 1):
+                        print("C'est gagné ! -> X : ", number_of_groups_loop, " Y : ", groups_size_loop)
+                        list_of_number_of_groups.append(number_of_groups_loop)
+                        list_of_size_of_groups.append(groups_size_loop)
                 if groups_number != 0:
                     break
 
         if last_param == "LAST_MIN":
-            for x in range(users_number):
-                for y in range(users_number):
-                    # print("X = ", x, "Y = " , y , "X*Y = ", x*y)
-                    if (x * y) == users_number:
-                        print("C'est gagné ! -> X : ", x, " Y : ", y)
-                        list_of_number_of_groups.append(x)
-                        list_of_size_of_groups.append(y)
-                    if (x * y) == (users_number + 1):
-                        print("C'est gagné ! -> X : ", x, " Y : ", y)
-                        list_of_number_of_groups.append(x)
-                        list_of_size_of_groups.append(y)
+            for number_of_groups_loop in range(users_number):
+                for groups_size_loop in range(users_number):
+                    # print("X = ", number_of_groups_loop, "Y = " , groups_size_loop , "X*Y = ", number_of_groups_loop*groups_size_loop)
+                    if (number_of_groups_loop * groups_size_loop) == users_number:
+                        print("C'est gagné ! -> X : ", number_of_groups_loop, " Y : ", groups_size_loop)
+                        list_of_number_of_groups.append(number_of_groups_loop)
+                        list_of_size_of_groups.append(groups_size_loop)
+                    if (number_of_groups_loop * groups_size_loop) == (users_number + 1):
+                        print("C'est gagné ! -> X : ", number_of_groups_loop, " Y : ", groups_size_loop)
+                        list_of_number_of_groups.append(number_of_groups_loop)
+                        list_of_size_of_groups.append(groups_size_loop)
                 if groups_number != 0:
                     break
-        if last_param != "LAST_MIN" and last_param != "LAST_MAX":
+        if last_param not in ('LAST_MIN', 'LAST_MAX'):
             print("IMPOSSIBLE")
             return
 
@@ -219,7 +228,8 @@ class GroupGenerator:
     #             groups_list[filled_group].add_user(users_list[i])
     #     self.set_groups_list(groups_list)
 
-    def add_to_group(self, new_user: User, group: Group) -> None:
+    @classmethod
+    def add_to_group(cls, new_user: User, group: Group) -> None:
         """
         Add a user to an existing group
         :param new_user: user to add in the existing group
