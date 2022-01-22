@@ -5,13 +5,12 @@ Module generating groups
 """
 
 import string
-from projet_dev_ci.model import user
+from typing import List
 from projet_dev_ci.model.group import Group
 from projet_dev_ci.model.user import User
-from typing import List
 
 
-class Group_generator:
+class GroupGenerator:
     """
     A group represent a list of users.
     A group has a given max size and cannot be bigger than this size
@@ -22,18 +21,18 @@ class Group_generator:
     def __init__(self, users_list: List[User], groups_size: int, last_param: string) -> None:
         """
         Creates a new Group_generator object with a given number of users and number of groups
-        :param users_number: The amount of users
-        :param groups_number: The amount of groups
+        :param users_list: List of users
+        :param groups_size: Desired size of the groups
         :param last_param: The way of handling last group size
-        :type users_number: int
-        :type groups_number: int
+        :type users_list: List[User]
+        :type groups_size: int
         :type last_param: string
         """
         super().__init__()
         if users_list and isinstance(users_list, List) and len(users_list) > 0 and \
                 groups_size and isinstance(groups_size, int) and groups_size > 0 and \
                 last_param and isinstance(last_param, str) and \
-                (last_param == "LAST_MIN" or last_param == "LAST_MAX"):
+                last_param in ('LAST_MIN', 'LAST_MAX'):
 
             self.__users_list = users_list
             self.__users_number = len(self.__users_list)
@@ -84,13 +83,13 @@ class Group_generator:
         """
         return self.__groups_list
 
-    def get_groups_number(self) -> int:
+    def get_number_of_groups(self) -> int:
         """
         Returns the number of groups
         :return: the number of groups
         :rtype: int
         """
-        return self.__groups_number
+        return self.__number_of_groups
 
     def get_last_group(self) -> Group:
         """
@@ -136,11 +135,11 @@ class Group_generator:
         """
         self.__groups_list = groups_list
 
-    def set_groups_number(self, groups_number: int):
+    def set_number_of_groups(self, groups_number: int):
         """
         set the number of groups
         """
-        self.__groups_number = groups_number
+        self.__number_of_groups = groups_number
 
     # endregion
 
@@ -148,13 +147,13 @@ class Group_generator:
 
     def number_of_groups_calculator(self, users_number: int, groups_size: int, last_param):
         groups_number = 0
-        last_group_size = groups_number
         list_of_number_of_groups = []
         list_of_size_of_groups = []
-        # print("Nombre d'utilisateurs : ", users_number," Nombre de groupes : ", groups_number - 1, " Taille des groupes : ", groups_size, " Taille du dernier groupe : ", last_group_size, " Calcul : ", ((groups_number - 1) * groups_size) + last_group_size)
-        if users_number % (users_number // groups_size) == 0:
-            print("Taille des groupes : ", groups_size, " Nombre de groupes : ", (users_number // groups_size))
-            groups_number = (users_number // groups_size)
+        if users_number % (users_number / groups_size) == 0:
+            self.__number_of_groups = (users_number / groups_size)
+            self.__groups_size = groups_size
+            self.__last_group_size = self.__groups_size
+            print("Taille des groupes : ", self.__groups_size, " Nombre de groupes : ", (self.__users_number / self.__groups_size), "Taille du dernier groupe : ", self.__last_group_size)
             return
         if last_param == "LAST_MAX":
             for x in range(users_number):
@@ -188,14 +187,12 @@ class Group_generator:
         if last_param != "LAST_MIN" and last_param != "LAST_MAX":
             print("IMPOSSIBLE")
             return
-        # print("Liste des éléments : ")
-        # for element in list_of_size_of_groups:
-        #     print(element)
-        result = min(list_of_size_of_groups, key=lambda z: abs(z - groups_size))  # Find closest number to the specified one from the list
+
+        result = min(list_of_size_of_groups,
+                     key=lambda z: abs(z - groups_size))  # Find closest number to the specified one from the list
         self.__groups_size = list_of_size_of_groups[list_of_number_of_groups.index(result)]
         self.__number_of_groups = result
         self.__users_number = users_number
-        print("Le résultat le plus proche", "de", self.__groups_size, "est : ", result)
 
         if users_number % self.__number_of_groups != 0:
             if last_param == "LAST_MIN":
@@ -205,8 +202,8 @@ class Group_generator:
         else:
             self.__last_group_size = self.__groups_size
 
-        print("Taille des groupes : ", self.__groups_size, " Nombre de groupes : ", self.__number_of_groups, " Taille dernier groupe : ",
-              self.__last_group_size)
+        print("Number of users : ", self.__users_number," Groups size : ", self.__groups_size, " Number of groups : ", self.__number_of_groups,
+              " Size of the last group : ", self.__last_group_size, "| Calculation : ", self.__groups_size, " * ", (self.__number_of_groups - 1), " + ", self.__last_group_size,  " = ", (self.__groups_size * (self.__number_of_groups - 1) + self.__last_group_size))
 
     # Todo : à faire
     # def fill_groups(self, list_users: List[User]) -> None:
@@ -226,7 +223,7 @@ class Group_generator:
         """
         Add a user to an existing group
         :param new_user: user to add in the existing group
-        :param group: group which the user will be added to 
+        :param group: group which the user will be added to
         :type new_user: User
         :type group: Group
         """
