@@ -56,6 +56,13 @@ class Group:
             self.__users.remove(user_to_remove)
             self.__current_size -= 1
 
+    def print_list_users(self) -> None:
+        """
+        Print every user from the Group
+        """
+        for element in self.__users:
+            print(element.get_name())
+
     # endregion
 
     # region Getters
