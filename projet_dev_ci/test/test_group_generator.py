@@ -5,8 +5,6 @@ Module used to test the Group_generator class
 import unittest
 
 from projet_dev_ci.model.groupgenerator import GroupGenerator
-from projet_dev_ci.model.group import Group
-from typing import List
 from projet_dev_ci.model.user import User
 
 
@@ -23,15 +21,14 @@ class GroupGeneratorTest(unittest.TestCase):
     #     self.assertIsInstance(sut, Group)
 
     def test(self) -> None:
-        # user_list_test: List[User] = [User("Frédo"), User("Quentin"), User("David")]
 
-        # user_list_test = [User("Frédo"), User("Quentin"), User("David"), User("Marion"), User("Isshia"), User("Damien"),
-        #                   User("Quentin"), User("David"), User("David"), User("Marion"), User("Isshia"), User("Damien"),
-        #                   User("Quentin"), User("David"), User("David"), User("Marion"), User("Isshia"), User("Damien"),
-        #                   User("Quentin"), User("David")]
+        user_list_test = [User("Frédo"), User("Quentin"), User("David"),
+                          User("Marion"), User("Isshia"), User("Damien"),
+                          User("Quentin"), User("David"), User("David"),
+                          User("Marion"), User("Isshia"), User("Damien"),
+                          User("Quentin"), User("David"), User("David"),
+                          User("Marion"), User("Isshia"), User("Damien"),
+                          User("Quentin"), User("David")]
 
-        user_list_test = [User("Frédo"), User("Quentin"), User("David"), User("Marion"), User("Isshia"), User("Damien"),
-                          User("Quentin"), User("David"), User("David"), User("Marion"), User("Isshia")]
-
-        sut = GroupGenerator(user_list_test, 4, "LAST_MIN")
-        self.assertEqual(2, 2)
+        GroupGenerator(user_list_test, 6, "LAST_MIN")
+    # def group_generator_odd_number_of_user_and_group_size(self) -> None:

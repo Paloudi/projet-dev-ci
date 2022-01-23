@@ -4,7 +4,6 @@
 Module storing the group model
 """
 
-import string
 from typing import List
 from projet_dev_ci.model.user import User
 
@@ -110,8 +109,8 @@ class Group:
 
     def set_users(self, new_users_list: int):
         """
-        set the list of group's users 
+        set the list of group's users
         """
         self.__users = new_users_list
 
-    # endregion 
+    # endregion
