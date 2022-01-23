@@ -45,6 +45,7 @@ class GroupGenerator:
             self.number_of_groups_calculator(self.__users_number, self.__groups_size, self.__last_param)
             self.create_groups(self.__groups_list)
             self.set_size_of_groups(self.__groups_list)
+            self.fill_groups(self.__users_list)
 
         else:
             raise ValueError("Parameters are invalid")
@@ -230,20 +231,20 @@ class GroupGenerator:
             group.set_max_size(self.__groups_size)
         if self.__last_group_size != groups_list[-1].get_max_size():
             groups_list[-1].set_max_size(self.__last_group_size)
-        for group in groups_list:
-            print(group.get_max_size())
 
     def fill_groups(self, list_users: List[User]) -> None:
         users_list = list_users
-        groups_list = self.get_groups_list
+        groups_list = self.get_groups_list()
         filled_groups = 0
         # Fill groups with users
         for i in range(len(users_list)):
-            if groups_list[filled_groups].get_current_size() < groups_list:
+            if groups_list[filled_groups].get_current_size() < self.__groups_size:
                 groups_list[filled_groups].add_user(users_list[i])
+                users_list[i].set_has_a_group(True)
             else:
                 filled_groups += 1
                 groups_list[filled_groups].add_user(users_list[i])
+                users_list[i].set_has_a_group(True)
         self.set_groups_list(groups_list)
 
     @classmethod
@@ -255,6 +256,7 @@ class GroupGenerator:
         :type new_user: User
         :type group: Group
         """
+        new_user.set_has_a_group(True)
         group.add_user(new_user)
 
     # endregion

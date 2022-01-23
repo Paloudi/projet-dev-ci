@@ -53,6 +53,7 @@ class Group:
         :type user_to_remove: User
         """
         if user_to_remove and isinstance(user_to_remove, User):
+            user_to_remove.set_has_a_group(False)
             self.__users.remove(user_to_remove)
             self.__current_size -= 1
 
