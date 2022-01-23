@@ -191,6 +191,14 @@ class GroupGenerator:
         # Find closest number to the specified one from the list
         result = min(list_of_size_of_groups,
                      key=lambda z: abs(z - self.__groups_size))
+        while list_of_size_of_groups[list_of_number_of_groups.index(result)] == 2 and \
+                last_param == "LAST_MIN":
+
+            list_of_number_of_groups.pop(list_of_size_of_groups.index(result))
+            list_of_size_of_groups.remove(result)
+            result = min(list_of_size_of_groups,
+                         key=lambda z: abs(z - self.__groups_size))
+
         self.__groups_size = list_of_size_of_groups[list_of_number_of_groups.index(result)]
         self.__number_of_groups = result
         self.__users_number = users_number
