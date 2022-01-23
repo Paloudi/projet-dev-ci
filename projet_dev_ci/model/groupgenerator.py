@@ -43,6 +43,8 @@ class GroupGenerator:
             self.__groups_size = groups_size
 
             self.number_of_groups_calculator(self.__users_number, self.__groups_size, self.__last_param)
+            self.create_groups(self.__groups_list)
+            self.set_size_of_groups(self.__groups_list)
 
         else:
             raise ValueError("Parameters are invalid")
@@ -158,16 +160,15 @@ class GroupGenerator:
         groups_number = 0
         list_of_number_of_groups = []
         list_of_size_of_groups = []
-        if users_number % (users_number / groups_size) == 0:
+        if users_number % int((users_number / groups_size)) == 0:
             self.__number_of_groups = (users_number / groups_size)
             self.__groups_size = groups_size
             self.__last_group_size = self.__groups_size
-            print("Taille des groupes : ", self.__groups_size, " Nombre de groupes : ", (self.__users_number / self.__groups_size), "Taille du dernier groupe : ", self.__last_group_size)
+            print("Taille des groupes : ", self.__groups_size, " Nombre de groupes : ", self.__number_of_groups, "Taille du dernier groupe : ", self.__last_group_size)
             return
         if last_param == "LAST_MAX":
             for number_of_groups_loop in range(users_number):
                 for groups_size_loop in range(users_number):
-                    # print("X = ", number_of_groups_loop, "Y = " , groups_size_loop , "X*Y = ", number_of_groups_loop*groups_size_loop)
                     if (number_of_groups_loop * groups_size_loop) == users_number:
                         print("C'est gagné ! -> X : ", number_of_groups_loop, " Y : ", groups_size_loop)
                         list_of_number_of_groups.append(number_of_groups_loop)
@@ -214,19 +215,36 @@ class GroupGenerator:
         print("Number of users : ", self.__users_number," Groups size : ", self.__groups_size, " Number of groups : ", self.__number_of_groups,
               " Size of the last group : ", self.__last_group_size, "| Calculation : ", self.__groups_size, " * ", (self.__number_of_groups - 1), " + ", self.__last_group_size,  " = ", (self.__groups_size * (self.__number_of_groups - 1) + self.__last_group_size))
 
-    # Todo : à faire
-    # def fill_groups(self, list_users: List[User]) -> None:
-    #     users_list = self.__users_list
-    #     groups_list = self.get_groups_list
-    #     filled_groups = 0
-    #     # Fill groups with users
-    #     for i in range(len(users_list)):
-    #         if groups_list[filled_group].get_current_size() < group_size:
-    #             groups_list[filled_group].add_user(users_list[i])
-    #         else:
-    #             filled_group += 1
-    #             groups_list[filled_group].add_user(users_list[i])
-    #     self.set_groups_list(groups_list)
+    def create_groups(self, groups_list: List[Group]) -> None:
+        for i in range(self.__number_of_groups):
+            groups_list.append(Group(self.__groups_size))
+        self.set_groups_list(groups_list)
+
+    def set_size_of_groups(self, groups_list: List[Group]):
+        """
+        Set max size of groups
+        :param groups_list: List of the groups
+        :type groups_list: List[Group]
+        """
+        for group in groups_list:
+            group.set_max_size(self.__groups_size)
+        if self.__last_group_size != groups_list[-1].get_max_size():
+            groups_list[-1].set_max_size(self.__last_group_size)
+        for group in groups_list:
+            print(group.get_max_size())
+
+    def fill_groups(self, list_users: List[User]) -> None:
+        users_list = list_users
+        groups_list = self.get_groups_list
+        filled_groups = 0
+        # Fill groups with users
+        for i in range(len(users_list)):
+            if groups_list[filled_groups].get_current_size() < groups_list:
+                groups_list[filled_groups].add_user(users_list[i])
+            else:
+                filled_groups += 1
+                groups_list[filled_groups].add_user(users_list[i])
+        self.set_groups_list(groups_list)
 
     @classmethod
     def add_to_group(cls, new_user: User, group: Group) -> None:

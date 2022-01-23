@@ -31,10 +31,7 @@ class GroupGeneratorTest(unittest.TestCase):
         #                   User("Quentin"), User("David")]
 
         user_list_test = [User("Frédo"), User("Quentin"), User("David"), User("Marion"), User("Isshia"), User("Damien"),
-                          User("Quentin"), User("David"), User("David"), User("Marion"), User("Isshia"), User("Damien"),
-                          User("Quentin"), User("David"), User("David"), User("Marion"), User("Isshia"), User("Isshia"),
-                          User("Isshia"), User("Isshia"), User("Isshia"), User("Isshia"), User("Isshia"), User("Isshia"),
-                          User("Isshia"), User("Isshia")]
+                          User("Quentin"), User("David"), User("David"), User("Marion"), User("Isshia")]
 
-        sut = GroupGenerator(user_list_test, 11, "LAST_MIN")
+        sut = GroupGenerator(user_list_test, 4, "LAST_MIN")
         self.assertEqual(2, 2)
