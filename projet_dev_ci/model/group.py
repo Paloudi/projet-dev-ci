@@ -33,6 +33,24 @@ class Group(models.Model):
                 self.list_users.append(new_user)
                 self.current_size += 1
 
+    def remove_user(self, user_to_remove: User) -> None:
+        """
+        Remove a user to this group
+        :param user_to_remove : an user to remove from this group
+        :type user_to_remove: User
+        """
+        if user_to_remove and isinstance(user_to_remove, User):
+            user_to_remove.set_has_a_group(False)
+            self.__users.remove(user_to_remove)
+            self.__current_size -= 1
+
+    def print_list_users(self) -> None:
+        """
+        Print every user from the Group
+        """
+        for element in self.__users:
+            print(element.get_name())
+
     # endregion
 
     # region Getters
@@ -44,5 +62,27 @@ class Group(models.Model):
         :rtype: List[User]
         """
         return self.list_users
+
+    # endregion
+
+    # region setters
+
+    def set_max_size(self, new_max_size: int):
+        """
+        set the max size of the group
+        """
+        self.__max_size = new_max_size
+
+    def set_current_size(self, new_current_size: int):
+        """
+        set the current size of the group
+        """
+        self.__current_size = new_current_size
+
+    def set_users(self, new_users_list: int):
+        """
+        set the list of group's users
+        """
+        self.__users = new_users_list
 
     # endregion

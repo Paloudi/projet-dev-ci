@@ -13,6 +13,10 @@ class User(models.Model):
     """
 
     name = models.TextField()
+    has_a_group = models.BooleanField()
 
     class Meta:
+        """
+        Class used to modify this model table information in the database
+        """
         db_table = "users"

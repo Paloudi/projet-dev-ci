@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 """
 Controller of the administrator route.
 """
@@ -14,3 +15,4 @@ def home(request):
     """
     now = datetime.now()
     return v.home(now)
+

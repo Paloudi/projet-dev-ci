@@ -29,6 +29,20 @@ class GroupTest(unittest.TestCase):
         sut.add_user(user)
         self.assertEqual(user, sut.get_users()[0])
 
+    def test_group_remove_user(self) -> None:
+        """
+        Test if an user can be removed from a group
+        """
+        user = User("test")
+        sut = Group(1)
+        sut.add_user(user)
+        self.assertEqual(user, sut.get_users()[0])
+        self.assertEqual(1, sut.get_current_size())
+
+        sut.remove_user(user)
+        self.assertEqual(0, sut.get_current_size())
+
+
     def test_group_add_too_many_users(self) -> None:
         """
         Test if the group max size works properly when adding too many users to a group
