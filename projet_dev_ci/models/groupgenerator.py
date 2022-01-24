@@ -5,9 +5,15 @@ Module generating groups
 """
 
 import string
+import logging
+import sys
 from typing import List
 from projet_dev_ci.models.group import Group
 from projet_dev_ci.models.user import User
+
+
+logger = logging.getLogger()
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 
 class GroupGenerator:
@@ -135,12 +141,6 @@ class GroupGenerator:
         """
         self.__groups_list = groups_list
 
-    def set_last_element_groups_list(self, groups_list: List[Group]):
-        """
-        set the last element of the list of Groups
-        """
-        self.__groups_list = groups_list
-
     def set_number_of_groups(self, groups_number: int):
         """
         set the number of groups
@@ -174,8 +174,7 @@ class GroupGenerator:
         if last_param == "LAST_MAX":
             self.__group_generator_last_max(list_of_number_of_groups, list_of_size_of_groups)
         elif last_param == "LAST_MIN":
-            self.__group_generator_last_min(list_of_number_of_groups,
-                                            list_of_size_of_groups)
+            self.__group_generator_last_min(list_of_number_of_groups, list_of_size_of_groups)
         else:
             raise ValueError("Last_param not LAST_MIN or LAST_MAX")
 
@@ -202,7 +201,7 @@ class GroupGenerator:
         self.__groups_size = list_of_size_of_groups[list_of_number_of_groups.index(result)]
         self.__number_of_groups = result
         self.__users_number = users_number
-        if users_number % self.__number_of_groups != 0:
+        if self.__users_number % self.__number_of_groups != 0:
             if last_param == "LAST_MIN":
                 self.__last_group_size = self.__groups_size - 1
             if last_param == "LAST_MAX":
@@ -214,12 +213,13 @@ class GroupGenerator:
         """
         Display information on groups specifications
         """
-        print("Number of users : ", self.__users_number, " Groups size : ", self.__groups_size,
-              " Number of groups : ", self.__number_of_groups,
-              " Size of the last group : ", self.__last_group_size,
-              "| Calculation : ", self.__groups_size,
-              " * ", (self.__number_of_groups - 1), " + ", self.__last_group_size,
-              " = ", (self.__groups_size * (self.__number_of_groups - 1) + self.__last_group_size))
+        logging.info(f"""\nNumber of users : {self.__users_number}
+        Groups size : {self.__groups_size}
+        Number of groups : {self.__number_of_groups}
+        Size of the last group : {self.__last_group_size}
+        Calculation : 
+        {self.__groups_size} * {self.__number_of_groups - 1} + {self.__last_group_size}
+        =  {self.__groups_size * (self.__number_of_groups - 1) + self.__last_group_size}""")
 
     def __group_generator_last_min(self, list_of_number_of_groups,
                                    list_of_size_of_groups):
@@ -293,21 +293,8 @@ class GroupGenerator:
                 groups_list[filled_groups].add_user(user)
                 user.set_has_a_group(True)
             else:
-                filled_groups += 1
                 groups_list[filled_groups].add_user(user)
+                filled_groups += 1
                 user.set_has_a_group(True)
         self.set_groups_list(groups_list)
-
-    @classmethod
-    def add_to_group(cls, new_user: User, group: Group) -> None:
-        """
-        Add a user to an existing group
-        :param new_user: user to add in the existing group
-        :param group: group which the user will be added to
-        :type new_user: User
-        :type group: Group
-        """
-        new_user.set_has_a_group(True)
-        group.add_user(new_user)
-
     # endregion

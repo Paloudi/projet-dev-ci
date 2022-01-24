@@ -26,6 +26,23 @@ class Group(models.Model):
         db_table = "groups"
         app_label = "projet_dev_ci"
 
+    # region Constructors
+
+    def __init__(self, size: int) -> None:
+        """
+        Creates a new Group object with a given size
+        :param size: The max size of this group
+        :type size: int
+        """
+        super().__init__()
+        if size and isinstance(size, int) and size > 0:
+            self.max_size = size
+            self.current_size = 0
+            self.users: List[User] = []
+        else:
+            raise ValueError("size parameter is invalid")
+
+    # endregion
 
     # region Methods
 
@@ -37,7 +54,7 @@ class Group(models.Model):
         """
         if new_user and isinstance(new_user, User):
             if self.max_size > self.current_size:
-                self.list_users.append(new_user)
+                self.users.append(new_user)
                 self.current_size += 1
 
     def remove_user(self, user_to_remove: User) -> None:
@@ -48,14 +65,14 @@ class Group(models.Model):
         """
         if user_to_remove and isinstance(user_to_remove, User):
             user_to_remove.set_has_a_group(False)
-            self.__users.remove(user_to_remove)
-            self.__current_size -= 1
+            self.users.remove(user_to_remove)
+            self.current_size -= 1
 
     def print_list_users(self) -> None:
         """
         Print every user from the Group
         """
-        for element in self.__users:
+        for element in self.users:
             print(element.get_name())
 
     # endregion
@@ -68,7 +85,23 @@ class Group(models.Model):
         :return: This group users list
         :rtype: List[User]
         """
-        return self.list_users
+        return self.users
+
+    def get_current_size(self) -> int:
+        """
+        Returns the current size of this group
+        :return: This group current size
+        :rtype: int
+        """
+        return self.current_size
+
+    def get_max_size(self) -> int:
+        """
+        Returns the max size of this group
+        :return: This group max size
+        :rtype: int
+        """
+        return self.max_size
 
     # endregion
 
@@ -78,18 +111,18 @@ class Group(models.Model):
         """
         set the max size of the group
         """
-        self.__max_size = new_max_size
+        self.max_size = new_max_size
 
     def set_current_size(self, new_current_size: int):
         """
         set the current size of the group
         """
-        self.__current_size = new_current_size
+        self.current_size = new_current_size
 
     def set_users(self, new_users_list: int):
         """
         set the list of group's users
         """
-        self.__users = new_users_list
+        self.users = new_users_list
 
     # endregion
