@@ -4,8 +4,8 @@ Module used to test the Group_generator class
 
 import unittest
 
-from projet_dev_ci.model.groupgenerator import GroupGenerator
-from projet_dev_ci.model.user import User
+from projet_dev_ci.models.groupgenerator import GroupGenerator
+from projet_dev_ci.models.user import User
 
 
 class GroupGeneratorTest(unittest.TestCase):

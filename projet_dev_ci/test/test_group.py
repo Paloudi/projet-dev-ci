@@ -4,8 +4,8 @@ Module used to test the Group class
 
 import unittest
 
-from projet_dev_ci.model.group import Group
-from projet_dev_ci.model.user import User
+from projet_dev_ci.models.group import Group
+from projet_dev_ci.models.user import User
 
 
 class GroupTest(unittest.TestCase):

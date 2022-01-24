@@ -4,7 +4,7 @@ Module used to test the User class
 
 import unittest
 
-from projet_dev_ci.model.user import User
+from projet_dev_ci.models.user import User
 
 
 class UserTest(unittest.TestCase):

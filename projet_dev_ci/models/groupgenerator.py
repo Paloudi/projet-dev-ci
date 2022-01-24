@@ -6,8 +6,8 @@ Module generating groups
 
 import string
 from typing import List
-from projet_dev_ci.model.group import Group
-from projet_dev_ci.model.user import User
+from projet_dev_ci.models.group import Group
+from projet_dev_ci.models.user import User
 
 
 class GroupGenerator:

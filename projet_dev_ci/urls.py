@@ -17,5 +17,7 @@ from django.urls import re_path
 from projet_dev_ci import views
 
 urlpatterns = [
-    re_path(r'^$', views.UserPageView.as_view(), name="user"),
+    re_path(r'^$', views.HomePageView.as_view(), name="home"),
+    re_path('administrateur', views.AdminPageView.as_view(), name="administrateur"),
+    re_path('utilisateur', views.UserPageView.as_view(), name="utilisateur"),
 ]

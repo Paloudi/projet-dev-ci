@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Module storing the user model
+Module storing the user models
 """
 from django.db import models
 
@@ -17,6 +17,7 @@ class User(models.Model):
 
     class Meta:
         """
-        Class used to modify this model table information in the database
+        Class used to modify this models table information in the database
         """
         db_table = "users"
+        app_label = "projet_dev_ci"

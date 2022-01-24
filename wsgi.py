@@ -16,6 +16,6 @@ path = "/var/www/html/epsi/current"
 if path not in sys.path:
 	sys.path.insert(0, path)
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'projet_dev_ci.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
 
 application = get_wsgi_application()

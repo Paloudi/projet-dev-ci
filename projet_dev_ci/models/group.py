@@ -1,11 +1,11 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Module storing the group model
+Module storing the group models
 """
 
 from typing import List
-from projet_dev_ci.model.user import User
+from projet_dev_ci.models.user import User
 from django.db import models
 
 
@@ -18,7 +18,14 @@ class Group(models.Model):
     max_size = models.PositiveIntegerField()
     current_size = models.PositiveIntegerField()
     users = models.TextField(null=True)
-    list_users = []
+
+    class Meta:
+        """
+        Class used to modify this models table information in the database
+        """
+        db_table = "groups"
+        app_label = "projet_dev_ci"
+
 
     # region Methods
 

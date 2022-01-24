@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,18 +10,22 @@
 
 	<title>Admin - Configuration</title>
 
+	{% load static %}
 	<!-- Bootstrap core CSS-->
-	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="vendor/bootstrap-toggle-master/css/bootstrap2-toggle.min.css" rel="stylesheet">
+	<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'vendor/bootstrap-toggle-master/css/bootstrap2-toggle.min.css' %}" rel="stylesheet">
 
+	{% load static %}
 	<!-- Custom fonts for this template-->
-	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
 
+	{% load static %}
 	<!-- Page level plugin CSS-->
-	<link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+	<link href="{% static 'vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
 
+	{% load static %}
 	<!-- Custom styles for this template-->
-	<link href="css/admin.css" rel="stylesheet">
+	<link href="{% static 'css/admin.css' %}" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -156,25 +159,26 @@
 	</div>
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap-toggle-master/js/bootstrap2-toggle.min.js"></script>
+	{% load static %}
+	<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap-toggle-master/js/bootstrap2-toggle.min.js' %}"></script>
 
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 	<!-- Core plugin JavaScript-->
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
 	<!-- Page level plugin JavaScript-->
-	<script src="vendor/datatables/jquery.dataTables.js"></script>
-	<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+	<script src="{% static 'vendor/datatables/jquery.dataTables.js' %}"></script>
+	<script src="{% static 'vendor/datatables/dataTables.bootstrap4.js' %}"></script>
 
 	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
 	<!-- Custom scripts for all pages-->
-	<script src="js/admin.min.js"></script>
+	<script src="{% static 'js/admin.min.js' %}"></script>
 
 	<!-- Demo scripts for this page-->
-	<script src="js/demo/datatables-demo.js"></script>
+	<script src="{% static 'js/demo/datatables-demo.js' %}"></script>
 
 	<!-- Add row -->
 	<script type="text/javascript">
@@ -197,9 +201,5 @@
 			$(this).closest('#inputFormRow').remove();
 		});
 	</script>
-
-
-
 </body>
-
 </html>
