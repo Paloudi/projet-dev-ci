@@ -1,4 +1,8 @@
 [run]
 omit = 
 	test/*
-
+	migrations/*
+	controller/*
+	view/*
+	../asgi.py
+	../wsgi.py
