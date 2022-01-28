@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>User</title>
+
+	<!-- Bootstrap core CSS-->
+	{% load static %}
+	<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+
+	{% load static %}
+	<!-- Custom fonts for this template-->
+	<link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+	<!-- Custom styles for this template-->
+	{% load static %}
+	<link href="{% static 'css/user.css' %}" rel="stylesheet" type="text/css">
+
+</head>
+<div class="container d-flex justify-content-center mt-5">
+	<div class="card mx-auto">
+		<h3 class="recent-border mt-4"> <span class="recent-orders">Bienvenue, votre profil</span> </h3>
+		<div>
+			<h6><span>[Nom de membre]</span> - Group <span>[Nom de group]</span>
+				<span><button type="button" class="btn btn-link">Se retirer</button></span>
+			</h6>
+		</div>
+		<div class="card-body">
+			<hr>
+			<h5>Entrer dans un groupe
+				<span><button id="removeRow" type="button" class="btn btn-link">Rejoignez au
+						hasard</button></span>
+			</h5>
+			<div>
+				<label>Vos invitations</label>
+				<div><button id="removeRow" type="button" class="btn btn-link">[Lien d'invitation 1]</button></div>
+				<div><button id="removeRow" type="button" class="btn btn-link">[Lien d'invitation 1]</button></div>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<thead>
+						<tr>
+							<th>
+								Nom de groupe</th>
+							<th>Nombre de membres</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Groupe 1</td>
+							<td>3</td>
+							<td>
+								<button type="button" class="btn btn-outline-primary mr-0">Demander</button>
+
+							</td>
+						</tr>
+						<tr>
+							<td>Groupe 2</td>
+							<td>4</td>
+							<td>
+								<button type="button" class="btn btn-outline-primary mr-0 "
+									disabled>Demander</button>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<hr>
+			<form>
+				<h5>Créer un nouveau groupe</h5>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Nom du group">
+				</div>
+			</form>
+			<label>Envoyer le lien d'invitation</label>
+			<div class="table-responsive">
+				<table class="table table-bordered dataTable" width="100%" cellspacing="0">
+					<thead>
+						<tr>
+							<th>
+								Liste des membres sans groupe
+							</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Tiger Nixon</td>
+							<th>
+								<button type="button" class="btn btn-outline-primary mr-0">Envoyer
+								</button>
+							</th>
+						</tr>
+						<tr>
+							<td>Cedric Kelly</td>
+							<th>
+								<button type="button" class="btn btn-outline-primary mr-0">Envoyer
+								</button>
+							</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<button type="submit" class="float-right btn btn-primary">Submit</button>
+		</div>
+	</div>
+</div>

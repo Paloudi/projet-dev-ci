@@ -4,7 +4,7 @@ Module used to test the User class
 
 import unittest
 
-from projet_dev_ci.model.user import User
+from projet_dev_ci.models.user import User
 
 
 class UserTest(unittest.TestCase):
@@ -26,15 +26,6 @@ class UserTest(unittest.TestCase):
         name = "TEST NAME"
         sut = User(name)
         self.assertEqual(sut.get_name(), name)
-
-    def test_user_get_id(self) -> None:
-        """
-        Test if the get id getter works properly
-        """
-        curr_id = User.get_static_id()
-        User("0")
-        User("1")
-        self.assertEqual(curr_id + 2, User.get_static_id())
 
 
 if __name__ == '__main__':
