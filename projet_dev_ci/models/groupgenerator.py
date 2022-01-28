@@ -167,7 +167,7 @@ class GroupGenerator:
             self.__number_of_groups = (users_number / groups_size)
             self.__groups_size = groups_size
             self.__last_group_size = self.__groups_size
-            print("Taille des groupes : ", self.__groups_size,
+            log("Taille des groupes : ", self.__groups_size,
                   " Nombre de groupes : ", self.__number_of_groups,
                   "Taille du dernier groupe : ", self.__last_group_size)
             return
@@ -229,13 +229,11 @@ class GroupGenerator:
         for number_of_groups_loop in range(self.__users_number):
             for groups_size_loop in range(self.__users_number):
                 if (number_of_groups_loop * groups_size_loop) == self.__users_number:
-                    print("C'est gagné ! -> X : ", number_of_groups_loop,
-                          " Y : ", groups_size_loop)
+                    logging.info(f"C'est gagné ! -> X : {number_of_groups_loop} Y : {groups_size_loop}")
                     list_of_number_of_groups.append(number_of_groups_loop)
                     list_of_size_of_groups.append(groups_size_loop)
                 if (number_of_groups_loop * groups_size_loop) == (self.__users_number + 1):
-                    print("C'est gagné ! -> X : ", number_of_groups_loop,
-                          " Y : ", groups_size_loop)
+                    logging.info(f"C'est gagné ! -> X : {number_of_groups_loop} Y : {groups_size_loop}")
                     list_of_number_of_groups.append(number_of_groups_loop)
                     list_of_size_of_groups.append(groups_size_loop)
             if self.__number_of_groups != 0:
@@ -249,13 +247,11 @@ class GroupGenerator:
         for number_of_groups_loop in range(self.__users_number):
             for groups_size_loop in range(self.__users_number):
                 if (number_of_groups_loop * groups_size_loop) == self.__users_number:
-                    print("C'est gagné ! -> X : ", number_of_groups_loop,
-                          " Y : ", groups_size_loop)
+                    logging.info(f"C'est gagné ! -> X : {number_of_groups_loop} Y : {groups_size_loop}")
                     list_of_number_of_groups.append(number_of_groups_loop)
                     list_of_size_of_groups.append(groups_size_loop)
                 if (number_of_groups_loop * groups_size_loop) == (self.__users_number - 1):
-                    print("C'est gagné ! -> X : ", number_of_groups_loop,
-                          " Y : ", groups_size_loop)
+                    logging.info(f"C'est gagné ! -> X : {number_of_groups_loop} Y : {groups_size_loop}")
                     list_of_number_of_groups.append(number_of_groups_loop)
                     list_of_size_of_groups.append(groups_size_loop)
             if self.__number_of_groups != 0:
