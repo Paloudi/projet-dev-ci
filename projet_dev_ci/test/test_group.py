@@ -4,6 +4,7 @@ Module used to test the Group class
 
 import unittest
 
+
 from projet_dev_ci.models.group import Group
 from projet_dev_ci.models.user import User
 
