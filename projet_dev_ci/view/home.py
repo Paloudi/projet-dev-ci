@@ -4,5 +4,5 @@ from django.http import HttpResponse
 
 
 def home(time):
-    html = "<html><body>It is now %s.</body></html>" % time
+    html = "<html><body>C'est maintenant : %s.</body></html>" % time
     return HttpResponse(html)

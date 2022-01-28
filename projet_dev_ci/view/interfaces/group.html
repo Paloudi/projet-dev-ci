@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Admin - Group</title>
+
+	<!-- Bootstrap core CSS-->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom fonts for this template-->
+	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+	<!-- Custom styles for this template-->
+	<link href="css/admin.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-dark">
+
+	<div class="container">
+		<div class="card card-login mx-auto mt-5">
+			<div class="card-header"><span>[Nom de groupe]</span></div>
+			<div class="card-body">
+				<form method="post" action="">
+					<div class="row">
+						<div class="col-lg-12">
+							<div id="inputFormRow">
+								<div class="input-group mb-3">
+									<input type="text" name="title[]" class="form-control m-input"
+										placeholder="Entrer nouveau membre" autocomplete="off">
+									<div class="input-group-append">
+										<button id="removeRow" type="button" class="btn btn-danger">Supprimer</button>
+									</div>
+								</div>
+							</div>
+
+							<div id="newRow"></div>
+							<button id="addRow" type="button" class="btn btn-primary">Ajouter</button>
+						</div>
+					</div>
+				</form>
+				<hr>
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th>
+									Membres du group
+								</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Tiger Nixon</td>
+								<th>
+									<button type="button" class="btn btn-outline-danger">Supprimer</button>
+								</th>
+							</tr>
+							<tr>
+								<td>Garrett Winters</td>
+								<th>
+									<button type="button" class="btn btn-outline-danger">Supprimer</button>
+								</th>
+							</tr>
+							<tr>
+								<td>Ashton Cox</td>
+								<th>
+									<button type="button" class="btn btn-outline-danger">Supprimer</button>
+								</th>
+							</tr>
+							<tr>
+								<td>Cedric Kelly</td>
+								<th>
+									<button type="button" class="btn btn-outline-danger">Supprimer</button>
+								</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<button type="submit" class="float-right btn btn-primary">Submit</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Add row -->
+	<script type="text/javascript">
+		$("#addRow").click(function () {
+			var html = '';
+			html += '<div id="inputFormRow">';
+			html += '<div class="input-group mb-3">';
+			html +=
+				'<input type="text" name="title[]" class="form-control m-input" placeholder="Enter title" autocomplete="off">';
+			html += '<div class="input-group-append">';
+			html += '<button id="removeRow" type="button" class="btn btn-danger">Supprimer</button>';
+			html += '</div>';
+			html += '</div>';
+
+			$('#newRow').append(html);
+		});
+
+		// remove row
+		$(document).on('click', '#removeRow', function () {
+			$(this).closest('#inputFormRow').remove();
+		});
+	</script>
+
+</body>
+
+</html>
