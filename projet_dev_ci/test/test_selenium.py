@@ -1,4 +1,8 @@
 import socket
+
+if socket.gethostname() == "debian-server":
+    exit(0)
+
 import unittest
 
 from selenium import webdriver
